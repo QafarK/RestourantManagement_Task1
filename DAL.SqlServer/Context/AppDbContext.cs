@@ -1,4 +1,5 @@
 ﻿using Domain.Entites;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,4 +16,5 @@ public class AppDbContext : DbContext
 	}
 
 	public DbSet<Category> Categories { get; set; }
+	public DbSet<Product> Products { get; set; }
 }
