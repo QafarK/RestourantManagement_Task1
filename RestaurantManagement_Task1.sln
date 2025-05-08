@@ -3,7 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestourantManagement_Task1", "RestourantManagement_Task1\RestourantManagement_Task1.csproj", "{268FDDA7-A22D-4750-8D55-7A5863025222}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantManagement_Task1", "RestourantManagement_Task1\RestaurantManagement_Task1.csproj", "{268FDDA7-A22D-4750-8D55-7A5863025222}"
+	ProjectSection(ProjectDependencies) = postProject
+		{57A17E11-29E1-4F98-B68B-57CA625D696A} = {57A17E11-29E1-4F98-B68B-57CA625D696A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{57A17E11-29E1-4F98-B68B-57CA625D696A}"
 EndProject
