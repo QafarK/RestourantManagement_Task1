@@ -11,37 +11,22 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Xml.Linq;
+using AutoMapper;
 
 namespace Application.CQRS.Categories.Handlers.CommandHandlers;
 
-public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<CreateCategoryRequest, ResponseModel<CreateCategoryResponse>>
+public class CreateCategoryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateCategoryRequest, ResponseModel<CreateCategoryResponse>>
 {
 	private readonly IUnitOfWork _unitOfWork = unitOfWork;
-
+	private readonly IMapper _mapper = mapper;
+	validator
 	public async Task<ResponseModel<CreateCategoryResponse>> Handle(CreateCategoryRequest request, CancellationToken cancellationToken)
 	{
-		Category newCategory = new()
-		{
-			Name = request.Name,
-		};
+		var mappedRequest = _mapper.Map<Category>(request);
 
-		if (string.IsNullOrEmpty(request.Name))
-		{
-			return new ResponseModel<CreateCategoryResponse>
-			{
-				Data = null,
-				Errors = ["Gonderilen melumat bosh veya null ola bilmez"],
-				IsSuccess = false
-			};
-		}
+		await _unitOfWork.CategoryRepository.AddAsync(mappedRequest);
 
-		await _unitOfWork.CategoryRepository.AddAsync(newCategory);
-
-		CreateCategoryResponse response = new()
-		{
-			Id = newCategory.Id,
-			Name = request.Name,
-		};
+		var response = _mapper.Map<CreateCategoryResponse>(mappedRequest);
 
 		return new ResponseModel<CreateCategoryResponse>
 		{

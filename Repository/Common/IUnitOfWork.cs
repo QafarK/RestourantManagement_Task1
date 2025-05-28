@@ -11,6 +11,8 @@ namespace Repository.Common
 	{
 		public ICategoryRepository CategoryRepository { get; }
 		public IProductRepository ProductRepository { get; }
+		public IUserRepository UserRepository { get; }
+
 		Task<int> SaveChanges();
 	}
 }
